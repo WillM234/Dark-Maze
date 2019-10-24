@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 3905411561
+    locked: 0
+  - name: Visible
+    uniqueID: 3012955171
+    locked: 0
+  - name: Darkness
+    uniqueID: 1375737239
+    locked: 0
+  - name: Background
+    uniqueID: 55819079
+    locked: 0
+  - name: NotVisible
+    uniqueID: 3527259345
+    locked: 0
