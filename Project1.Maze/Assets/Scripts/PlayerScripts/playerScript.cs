@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Player_Script : MonoBehaviour
+
+public class playerScript : MonoBehaviour
 {
 public Vector2 StartPos;
 private float speed = .005f;
