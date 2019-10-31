@@ -15,9 +15,9 @@ private int curentLives;
 public Text LifeCounter;
 
 //Panel Stuff
-[SerialiazedField]public GameObject WinPanel;
-[SerialiazedField]public GameObject PausePanel;
-[SerialiazedField]public GameObject LosePanel; 
+public GameObject WinPanel;
+public GameObject PausePanel;
+public GameObject LosePanel; 
     // Start is called before the first frame update
 void Start()
     {
@@ -25,7 +25,7 @@ void Start()
         
         rb2d = GetComponent<Rigidbody2D>();
         
-        currentLives = 3;
+        curentLives = 3;
         
         PausePanel.SetActive(false);
         WinPanel.SetActive(false);
@@ -64,7 +64,7 @@ void Update()
                     }
                 if(PausePanel.activeInHierarchy)//deactivats pause if it is not already active
                     {
-                    ConinueGame();
+                    ContinueGame();
                     }
             }
 /////////Uodating Lives///////////
