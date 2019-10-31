@@ -8,6 +8,8 @@ public float upMax;
 public float downMax;
 public float speed;
 
+private EnemyColliderFlip flip;
+
 private Vector2 MVect;
     // Start is called before the first frame update
     void Start()
@@ -24,10 +26,12 @@ Vector2 newPos = new Vector2(transform.position.x + MVect.x * speed, transform.p
     if(newPos.y <= upMax)
         {
         speed = -speed;
+        flip.YrotationD();
         }
     if(newPos.y >= downMax)
         {
-        speed = -speed;           
+        speed = -speed;  
+        flip.YrotationU();
         }
 transform.position = newPos;
     }

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class EnemyScriptXmove : MonoBehaviour
 {
-public float leftMax;
-public float rightMax;
+public float xleftMax;
+public float xrightMax;
 public float speed;
+ 
+public bool movingR;
+
+public EnemyColliderFlip flip;//remember to set this in editor
 
 private Vector2 MVect;
     // Start is called before the first frame update
     void Start()
     {
-MVect.x = -1f; 
+MVect.x = -1f;
     }
 
     // Update is called once per frame
@@ -23,13 +27,23 @@ Vector2 newPos = new Vector2(transform.position.x + MVect.x * speed, transform.p
 
 
 //constrains enemy movemnet. Has to be set in editor
-    if(newPos.x <= leftMax)
+    if(newPos.x <= xleftMax)
         {
         speed = -speed;
+        movingR = false;
         }
-    if(newPos.x >= rightMax)
+    if(newPos.x >= xrightMax)
         {
-        speed = -speed;           
+        speed = -speed; 
+        movingR = true; 
+        }
+    if(movingR == true)
+        {
+        flip.XrotationL();
+        }
+    if(movingR == false)
+        {
+        flip.XrotationR();
         }
 transform.position = newPos;
 }

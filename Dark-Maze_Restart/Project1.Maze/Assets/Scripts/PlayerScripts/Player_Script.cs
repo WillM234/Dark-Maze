@@ -35,6 +35,8 @@ void Start()
     // Update is called once per frame
 void Update()
     {
+    if(!PausePanel.activeInHierarchy)//PauseMenu has to be inactive to use movement
+    {
 /////////Movement Controls/////////
         if(Input.GetKey(KeyCode.A))//move left
             {
@@ -56,15 +58,17 @@ void Update()
             transform.Translate(Vector2.down * speed);
     /*rb2d.AddForce(-transform.forward*speed * Time.deltaTime)*/;
     }
-        if(Input.GetKeyDown(KeyCode.Escape))//pause key
+    }
+        if(Input.GetKeyDown(KeyCode.P))//pause key
             {
+            print("works");
                 if(!PausePanel.activeInHierarchy)//activates pause if it is not already active
                     {
-                    PauseGame();
+                    PausePanel.SetActive(true);
                     }
                 if(PausePanel.activeInHierarchy)//deactivats pause if it is not already active
                     {
-                    ContinueGame();
+                    PausePanel.SetActive(false);
                     }
             }
 /////////Uodating Lives///////////
@@ -77,7 +81,7 @@ void Update()
     
 void OnCollisionEnter(Collision other)
     {
-    if(other.gameobject.tag == "Goal")//activates win condition
+    if(other.gameObject.tag == "Goal")//activates win condition
         {
         WinGame();
         }
@@ -85,23 +89,22 @@ void OnCollisionEnter(Collision other)
     
 private void PauseGame()//pauses game
     {
-    Time.timeScale = 0;
     PausePanel.SetActive(true);
     }
     
-private void ContinueGame()//unpauses game
+public void ContinueGame()//unpauses game
     {
     Time.timeScale = 1;
     PausePanel.SetActive(false);
     }
     
-private void WinGame()//pauses game and sets WinPanel Active
+public void WinGame()//pauses game and sets WinPanel Active
     {
     Time.timeScale = 0;
     WinPanel.SetActive(true);
     }
     
-private void LoseGame()//pauses game and sets LosePanel Active
+public void LoseGame()//pauses game and sets LosePanel Active
     {
     
     }
