@@ -8,17 +8,12 @@ public GameObject enemy;
 public BoxCollider2D coll;
 public Player_Script player;
 
+public bool playerEnterExit;
 
 public Vector3 StartingRotation; 
-//private Vector3 MovingRight = new Vector3(0f,0f,180f);
-//private Vector3 MovingLeft = new Vector3(0f,0f,0f);
-//private Vector3 MovingUp = new Vector3(0f,0f, -90f);
-//private Vector3 MovingDown = new Vector3(0f,0f, 90f);
-
-
 public Vector2 startPos;
 
-private float timer = 3;
+public float timer = 3;
 void Start()
     {
     enemy.transform.position = startPos; 
@@ -26,33 +21,33 @@ void Start()
     }
 void Update()
     {
+    if(playerEnterExit == true)
+        {
+        timer -= Time.deltaTime;
+        }
+    if(playerEnterExit == false)
+        {
+        timer = 2;
+        }
 //////Timer at 0//////
         if(timer <= 0)
             {
             player.reset();
             reset();
-            timer = 3;
             }
 }
-void OnTriggerEnter(Collider other)
+void OnTriggerEnter2D(Collider2D enter)
     {
-    /*if(other.gameObject.tag == "Player")
+    if(enter.gameObject.tag == "Player")
         {
-        timer = 3;
-        }*/
-    }
-void OnTriggerStay(Collider Other)
-    {
-    if(Other.gameObject.tag == "Player")
-        {
-        timer -= Time.deltaTime; 
+        playerEnterExit = true;
         }
     }
-void OnTriggerExit(Collider exit)
+void OnTriggerExit2D(Collider2D exit)
     {
     if(exit.gameObject.tag == "Player")
         {
-        timer = 3;
+        playerEnterExit = false;
         }
     }
 public void XrotationR()
