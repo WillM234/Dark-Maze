@@ -19,6 +19,7 @@ public Text LifeCounter;
 public GameObject WinPanel;
 public GameObject PausePanel;
 public GameObject LosePanel;
+public GameObject HUD;
 //bools for controls
 public bool canMove;
 public bool Lose;
@@ -44,11 +45,11 @@ void Update()
     canMove = true;
     PausePanel.SetActive(false);  
     }
-    if(Win == true)
+    if(Win == true)//sets canMove fasle
         {
         canMove = false;
         }
-    if(Lose == true)
+    if(Lose == true)//sets canMove fasle
         {
         canMove = false;
         }
@@ -71,6 +72,7 @@ void Update()
             {
             transform.Translate(Vector2.down * speed);
             }
+            HUD.SetActive(true);
         }
     if(Input.GetKeyDown(KeyCode.P))//activates pause menu
         {
@@ -81,12 +83,16 @@ void Update()
         canMove = false;
         PausePanel.SetActive(true);
         }
+    if(canMove == false)//sets HUD off when a menu is open.
+        {
+        HUD.SetActive(false);
+        }
 /////////Updating Lives///////////
-        if(curentLives <= 0)//activates lose condition
-            {
+    if(curentLives <= 0)//activates lose condition
+        {
             LoseGame();
             }
-        LifeCounter.text = ("Lives: " + curentLives + " / " + maxLives);//Sets text in HUD to track Lives
+    LifeCounter.text = ("Lives: " + curentLives + " / " + maxLives);//Sets text in HUD to track Lives
     }   
 void OnCollisionEnter2D(Collision2D other)
     {
