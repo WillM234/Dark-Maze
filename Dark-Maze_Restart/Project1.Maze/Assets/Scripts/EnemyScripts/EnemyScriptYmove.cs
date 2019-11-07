@@ -31,29 +31,30 @@ Vector2 newPos = new Vector2(transform.position.x + MVect.x * actualSpeed, trans
 if(canMove == true)
     {
     MVect.y = -1f;
-    if(newPos.y <= upMax)
-        {
-        speed = -speed;
-        movingUp = false;
-        }
-    if(newPos.y >= downMax)
+    if(newPos.y >= upMax)
         {
         speed = -speed;
         movingUp = true;
         }
+    if(newPos.y <= downMax)
+        {
+        speed = -speed;
+        movingUp = false;
+        }
     if(movingUp == true)
         {
-        flip.YrotationU();
+        flip.YrotationD();
         }
     if(movingUp == false)
         {
-        flip.YrotationD();
+        flip.YrotationU();
         }
     }
 if(canMove == false)
     {
     MVect.y = 0f;
     }
+
 if(pause.pauseOnOff == true)
     {
     canMove = false;

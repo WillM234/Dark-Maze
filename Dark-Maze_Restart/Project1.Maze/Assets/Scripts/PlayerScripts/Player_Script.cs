@@ -100,6 +100,10 @@ void OnCollisionEnter2D(Collision2D other)
         {
         WinGame();
         }
+    if(other.gameObject.tag == "Enemy")
+        {
+        reset();
+        }
     }
 public void WinGame()//pauses game and sets WinPanel Active
     {
