@@ -146,8 +146,11 @@ MonoBehaviour:
   xleftMax: 0
   xrightMax: 0
   speed: 0
+  canMove: 0
   movingR: 0
+  player: {fileID: 5456348103777881746, guid: 0e30c491e3517478b9f633720f065571, type: 3}
   flip: {fileID: 1183114206409049784}
+  pause: {fileID: 0}
 --- !u!1 &801916237081567239
 GameObject:
   m_ObjectHideFlags: 0
