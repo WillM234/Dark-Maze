@@ -11,6 +11,11 @@ public PauseMenu pause;
 public Vector2 StartPos;
 private float speed = .005f;
 private Rigidbody2D rb2d;
+public AudioSource AudioSource;
+public AudioClip Caught1;
+public AudioClip Caught2;
+public AudioClip StageClear;
+private int CaughtSelector;
 //lives stuff
 private int maxLives = 3;
 private int curentLives;
@@ -109,6 +114,10 @@ public void WinGame()//pauses game and sets WinPanel Active
     {
     WinPanel.SetActive(true);
     Win = true;
+    if(!AudioSource.isPlaying)
+            {
+            AudioSource.PlayOneShot(StageClear);//plays sound when stage is cleared
+            }
     }   
 public void LoseGame()//pauses game and sets LosePanel Active
     {
@@ -117,6 +126,21 @@ public void LoseGame()//pauses game and sets LosePanel Active
     } 
 public void reset()//called for when player is in enemy trigger for 2 sec. Restes player at the begining of the lavel
     {
+    CaughtSelector = Random.Range(0,1);//randomly selects between the two caught sounds 
+    if(CaughtSelector == 0)
+        {
+         if(!AudioSource.isPlaying)//checks to see if a sound is playing First 
+            {
+            AudioSource.PlayOneShot(Caught1);
+            }
+        }
+    if(CaughtSelector == 1)
+        {
+        if(!AudioSource.isPlaying)
+            {
+            AudioSource.PlayOneShot(Caught2);
+            }
+        }
     canMove = true;
     curentLives -= 1;
     transform.position = StartPos;
